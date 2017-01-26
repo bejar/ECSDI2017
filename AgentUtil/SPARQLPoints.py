@@ -15,8 +15,9 @@ __author__ = 'bejar'
 
 
 DBPEDIA = "http://dbpedia.org/sparql"
-GEODATA = "http://linkedgeodata.org/sparql"
+GEODATA = "http://linkedgeodata.org/vsparql"
 LGEODATA = "http://live.linkedgeodata.org/sparql"
 OPENLINK = "http://lod2.openlinksw.com/sparql"
 FACTFORGE = "http://factforge.net/sparql"
 FUSEKI = "http://localhost:3030/ds/query"
+GEOLINKEDDATA = "http://geo.linkeddata.es/sparql"

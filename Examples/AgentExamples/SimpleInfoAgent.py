@@ -150,7 +150,7 @@ def stop():
 def comunicacion():
     """
     Entrypoint de comunicacion del agente
-    Simplementet retorna un objeto fijo que representa una
+    Simplemente retorna un objeto fijo que representa una
     respuesta a una busqueda de hotel
 
     Asumimos que se reciben siempre acciones que se refieren a lo que puede hacer
