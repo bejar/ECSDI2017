@@ -6,7 +6,21 @@ Logging
 
 :Description: Logging
 
-    Different Auxiliary functions used for different purposes
+    Configura un logger para poder registrar la actividad de un programa por salida
+    estandar o fichero
+
+    crear el logger con:
+
+    logger = config_logger(level=1)
+
+    registrar eventos con:
+
+    logger.info('alguna informacion %s %s', var1, var2)
+    logger.debug('esta variable vale %d', var)
+    logger.warning('alguna cosa va mal')
+    logger.error('esto no funciona')
+
+    Detalles en https://docs.python.org/2/howto/logging.html
 
 :Authors:
     bejar

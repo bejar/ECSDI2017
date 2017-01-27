@@ -35,7 +35,7 @@ flights = Flights(AMADEUS_KEY)
 resp = flights.extensive_search(
     origin='MAD',
     destination='BCN',
-    departure_date='2017-01-25--2017-02-28',
+    departure_date='2017-02-05--2017-02-28',
     duration='4--10')
 
 print resp
