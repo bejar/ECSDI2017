@@ -4,7 +4,11 @@ File: AgentFlights
 
 Created on 07/02/2014 9:00
 
-Hace consultas al fichero FlightRoutes.ttl.gz
+Hace consultas al fichero FlightRoutes.ttl.gz usando rdflib
+
+El grafo se carga en memoria y se hacen consultas SPARQL al grafo, los vocabularios
+usados son TIO (Tickets Ontology), GEO (informacion geografica, solo lat y lon) y
+DBPEDIA para aeropuertos y lineas aereas
 
 @author: bejar
 
@@ -22,7 +26,7 @@ from AgentUtil.OntoNamespaces import TIO
 g = Graph()
 
 # Carga el grafo RDF desde el fichero
-ontofile = gzip.open('../../FlightData/FlightRoutes.ttl.gz')
+ontofile = gzip.open('FlightRoutes.ttl.gz')
 g.parse(ontofile, format='turtle')
 
 # Consulta al grafo los aeropuertos dentro de la caja definida por las coordenadas

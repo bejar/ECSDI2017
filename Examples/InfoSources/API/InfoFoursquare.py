@@ -2,7 +2,9 @@
 """
 Created on Fri Dec 27 15:58:13 2013
 
-Agente que responde a peticiones
+Consulta a Foursquare mediante el modulo foursquare
+
+https://github.com/mLewisLogic/foursquare
 
 Demo que hace una consulta a FourSquare con unas coordenadas dentro de Barcelona
 en un area de 4Km a la redonda buscando museos
@@ -15,7 +17,6 @@ acceso a FourSquare (FQCLIENT_ID, FQCLIENT_SECRET)
 __author__ = 'javier'
 
 import foursquare
-
 from AgentUtil.APIKeys import FQCLIENT_ID, FQCLIENT_SECRET
 
 

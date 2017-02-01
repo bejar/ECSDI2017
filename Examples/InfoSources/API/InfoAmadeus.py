@@ -8,6 +8,14 @@ AgentAmadeus
 
     Uso de la API de Amadeus, hoteles, vuelos, tren
 
+    http://sandbox.amadeus.com
+
+    Documentacion de la API REST (usando requests)
+
+    https://sandbox.amadeus.com/api-catalog
+
+    Tambien se puede usar el modulo python amadeus
+
     http://amadeus.readthedocs.io/en/latest/index.html
 
 :Authors: bejar

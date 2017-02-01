@@ -2,7 +2,9 @@
 """
 Created on Fri Dec 27 15:58:13 2013
 
-Agente que responde a peticiones
+Consultas a Google Places usando el modulo python python-google-places
+
+https://github.com/slimkrazy/python-google-places
 
 Demo que hace una consulta a Google Places con las coordenadas que le asigna el
 servicio de geolocalizacion a Barcelona en un area de 300m a la redonda buscando estaciones
