@@ -45,35 +45,39 @@ sparql.setQuery("""
 sparql.setReturnFormat(JSON)
 
 # Obtenemos los resultados y los imprimimos talcual
-results = sparql.query()
+results = sparql.query().convert()
 
-print 'Propiedades con el dominio'
-print '-------------------------------------------'
-results.print_results()
 
-# Obtenemos todos los atributos que tienen como rango
-# las clases asignadas a Barcelona
-sparql.setQuery("""
-    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-    SELECT  DISTINCT ?domain ?prop ?range
-    WHERE {<http://dbpedia.org/resource/Barcelona> a ?range.
-           ?prop a rdf:Property.
-           ?prop rdfs:range ?range.
-           ?prop rdfs:domain ?domain.
-           }
-    LIMIT 1000
-""")
+for r in results['results']['bindings']:
+    print r
 
-# Los SELECT no siempre retornan un grafo RDF valido, por lo que es mas seguro obtener
-# la informacion como JSON
-sparql.setReturnFormat(JSON)
-
-# Obtenemos los resultados y los imprimimos talcual
-results = sparql.query()
-
-print
-print
-print 'Propiedades con el rango'
-print '-------------------------------------------'
-results.print_results()
+# print 'Propiedades con el dominio'
+# print '-------------------------------------------'
+# results.print_results()
+#
+# # Obtenemos todos los atributos que tienen como rango
+# # las clases asignadas a Barcelona
+# sparql.setQuery("""
+#     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+#     PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+#     SELECT  DISTINCT ?domain ?prop ?range
+#     WHERE {<http://dbpedia.org/resource/Barcelona> a ?range.
+#            ?prop a rdf:Property.
+#            ?prop rdfs:range ?range.
+#            ?prop rdfs:domain ?domain.
+#            }
+#     LIMIT 1000
+# """)
+#
+# # Los SELECT no siempre retornan un grafo RDF valido, por lo que es mas seguro obtener
+# # la informacion como JSON
+# sparql.setReturnFormat(JSON)
+#
+# # Obtenemos los resultados y los imprimimos talcual
+# results = sparql.query()
+#
+# print
+# print
+# print 'Propiedades con el rango'
+# print '-------------------------------------------'
+# results.print_results()
