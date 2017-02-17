@@ -79,7 +79,7 @@ print resgraph.serialize(format='n3')
 
 # Obtenemos todos los predicados
 
-print('\n\n Clases a las que pertenece la URI de Barcelona (recorriendo las tripletas')
+print('\n\n Clases a las que pertenece la URI de Barcelona (recorriendo las tripletas)')
 for _, _, p in resgraph:
     print p
 

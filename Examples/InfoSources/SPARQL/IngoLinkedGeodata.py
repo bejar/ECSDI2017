@@ -15,7 +15,7 @@ lgdo:Amenity
 """
 
 from SPARQLWrapper import SPARQLWrapper, JSON
-from AgentUtil.SPARQLPoints import GEODATA, GEOLINKEDDATA
+from AgentUtil.SPARQLPoints import GEODATA, LGEODATA
 
 
 sparql = SPARQLWrapper(GEODATA)
@@ -36,6 +36,11 @@ sparql.setQuery("""
   }
   """)
 sparql.setReturnFormat(JSON)
-results = sparql.query()
-print results.print_results()
+results = sparql.query().convert()
+vars = results['head']['vars']
+for res in results['results']['bindings']:
+    for v in vars:
+        print v, ':', res[v]
+
+
 
