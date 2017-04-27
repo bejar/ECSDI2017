@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-filename: ExampleAgent1
+filename: SimpleInfoAgent
+
+Antes de ejecutar hay que añadir la raiz del proyecto a la variable PYTHONPATH
 
 Agente que se registra como agente de hoteles y espera peticiones
 

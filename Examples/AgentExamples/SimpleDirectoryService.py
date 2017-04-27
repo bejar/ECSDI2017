@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-filename: SimpleRegisterAgent
+filename: SimpleDirectoryAgent
+
+Antes de ejecutar hay que añadir la raiz del proyecto a la variable PYTHONPATH
 
 Agente que lleva un registro de otros agentes
 
