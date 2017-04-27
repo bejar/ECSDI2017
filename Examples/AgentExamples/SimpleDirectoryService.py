@@ -52,7 +52,7 @@ if args.port is None:
 else:
     port = args.port
 
-if args.open is None:
+if args.open:
     hostname = '0.0.0.0'
 else:
     hostname = socket.gethostname()
