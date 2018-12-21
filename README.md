@@ -1,7 +1,7 @@
-ECSDILab 2017
+ECSDILab 2019
 =============
 
-Ejemplos de programas para el laboratorio de ECSDI 2017:
+Ejemplos de programas para el laboratorio de ECSDI 2019:
 
 * IPython notebooks con ejemplos de python
 * Uso de la libreria Multiprocessing
