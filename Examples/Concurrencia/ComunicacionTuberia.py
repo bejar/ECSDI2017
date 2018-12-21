@@ -10,22 +10,21 @@ Created on 12/02/2014
 @author: javier
 """
 
-__author__ = 'javier'
-
 from multiprocessing import Process, Pipe
 
+__author__ = 'javier'
 
 def proceso1(conn1, conn2):
     for i in range(100):
         conn1.send(i)
-        print conn2.recv(), 'P1:'
+        print(conn2.recv(), 'P1:')
     conn1.close()
 
 
 def proceso2(conn1, conn2):
     for i in range(100):
         conn2.send(i)
-        print conn1.recv(), 'P2:'
+        print(conn1.recv(), 'P2:')
     conn1.close()
 
 

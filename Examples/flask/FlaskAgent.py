@@ -35,21 +35,16 @@ FlaskAgent
 
 """
 
-__author__ = 'bejar'
-
 from flask import Flask, request
 import argparse
 import requests
 from requests import ConnectionError
 from multiprocessing import Process
 
-# Definimos los parametros de la linea de comandos
-parser = argparse.ArgumentParser()
-parser.add_argument('--host', default='localhost', help="Host del agente")
-parser.add_argument('--port', type=int, help="Puerto de comunicacion del agente")
-parser.add_argument('--acomm', help='Direccion del agente con el que comunicarse')
-parser.add_argument('--aport', type=int, help='Puerto del agente con el que comunicarse')
-parser.add_argument('--messages', nargs='+', default=[], help="mensajes a enviar")
+__author__ = 'bejar'
+
+
+
 
 app = Flask(__name__)
 
@@ -71,7 +66,7 @@ def servicio():
     :return:
     """
     x = request.args['content']
-    print 'recibido', x
+    print('recibido', x)
     return x
 
 
@@ -97,16 +92,23 @@ def behavior(mess, comm):
         except ConnectionError:
             pass
 
-    print 'Is Alive'
+    print('Is Alive')
 
     # Enviamos todos los mensajes
     for m in mess:
-        print 'enviando', m
+        print('enviando', m)
         r = requests.get(address + 'comunica', params={'content': m})
-        print r.text
+        print(r.text)
 
 
 if __name__ == '__main__':
+    # Definimos los parametros de la linea de comandos
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--host', default='localhost', help="Host del agente")
+    parser.add_argument('--port', type=int, help="Puerto de comunicacion del agente")
+    parser.add_argument('--acomm', help='Direccion del agente con el que comunicarse')
+    parser.add_argument('--aport', type=int, help='Puerto del agente con el que comunicarse')
+    parser.add_argument('--messages', nargs='+', default=[], help="mensajes a enviar")
 
     # parsing de los parametros de la linea de comandos
     args = parser.parse_args()
@@ -123,4 +125,4 @@ if __name__ == '__main__':
     if args.acomm is not None:
         ab.join()
 
-    print 'The End'
+    print('The End')

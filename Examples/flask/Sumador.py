@@ -4,7 +4,7 @@ Created on Thu Dec 26 10:47:57 2013
 
 Webservice flask con una entrada
 
-/servicio - Retorna la suma de los dos numeros que se pasan como parametros x e y de la peticion
+/sumador - Retorna la suma de los dos numeros que se pasan como parametros x e y de la peticion
 
 por defecto el servidor flask se pondra en marcha en http://127.0.0.1:5000/
 
@@ -14,14 +14,15 @@ http://127.0.0.1:5000/servicio?x=3&y=4
 
 @author: javier
 """
-__author__ = 'bejar'
 
 from flask import Flask, request
+
+__author__ = 'bejar'
 
 app = Flask(__name__)
 
 
-@app.route("/servicio")
+@app.route("/sumador")
 def servicio():
     x = int(request.args['x'])
     y = int(request.args['y'])

@@ -1,3 +1,6 @@
 rdflib
 flask
 SPARQLWrapper
+requests
+numpy
+matplotlib

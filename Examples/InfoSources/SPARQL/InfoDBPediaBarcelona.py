@@ -55,7 +55,7 @@ sparql.setReturnFormat(RDF)
 resgraph = sparql.query().convert()
 
 for s, p, o in resgraph:
-    print s, '--', p, '--', o
+    print(s, '--', p, '--', o)
 
 
 

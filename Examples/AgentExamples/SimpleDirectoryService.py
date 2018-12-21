@@ -17,7 +17,6 @@ directory-service-ontology.owl
 @author: javier
 """
 
-__author__ = 'javier'
 
 from multiprocessing import Process, Queue
 import socket
@@ -33,49 +32,10 @@ from AgentUtil.Agent import Agent
 from AgentUtil.ACLMessages import build_message, get_message_properties
 from AgentUtil.Logging import config_logger
 
+__author__ = 'javier'
 
-# Definimos los parametros de la linea de comandos
-parser = argparse.ArgumentParser()
-parser.add_argument('--open', help="Define si el servidor est abierto al exterior o no", action='store_true',
-                    default=False)
-parser.add_argument('--port', type=int, help="Puerto de comunicacion del agente")
-
-# Logging
-logger = config_logger(level=1)
-
-# parsing de los parametros de la linea de comandos
-args = parser.parse_args()
-
-# Configuration stuff
-if args.port is None:
-    port = 9000
-else:
-    port = args.port
-
-if args.open:
-    hostname = '0.0.0.0'
-else:
-    hostname = socket.gethostname()
-
-# Directory Service Graph
-dsgraph = Graph()
-
-# Vinculamos todos los espacios de nombre a utilizar
-dsgraph.bind('acl', ACL)
-dsgraph.bind('rdf', RDF)
-dsgraph.bind('rdfs', RDFS)
-dsgraph.bind('foaf', FOAF)
-dsgraph.bind('dso', DSO)
-
-agn = Namespace("http://www.agentes.org#")
-DirectoryAgent = Agent('DirectoryAgent',
-                       agn.Directory,
-                       'http://%s:%d/Register' % (hostname, port),
-                       'http://%s:%d/Stop' % (hostname, port))
+# Flask stuff
 app = Flask(__name__)
-mss_cnt = 0
-
-cola1 = Queue()  # Cola de comunicacion entre procesos
 
 
 @app.route("/Register")
@@ -240,13 +200,56 @@ def agentbehavior1(cola):
             pass
         v = cola.get()
         if v == 0:
-            print v
+            print(v)
             return 0
         else:
-            print v
+            print(v)
 
 
 if __name__ == '__main__':
+    # Definimos los parametros de la linea de comandos
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--open', help="Define si el servidor est abierto al exterior o no", action='store_true',
+                        default=False)
+    parser.add_argument('--port', type=int, help="Puerto de comunicacion del agente")
+
+    # Logging
+    logger = config_logger(level=1)
+
+    # parsing de los parametros de la linea de comandos
+    args = parser.parse_args()
+
+    # Configuration stuff
+    if args.port is None:
+        port = 9000
+    else:
+        port = args.port
+
+    if args.open:
+        hostname = '0.0.0.0'
+    else:
+        hostname = socket.gethostname()
+
+    # Directory Service Graph
+    dsgraph = Graph()
+
+    # Vinculamos todos los espacios de nombre a utilizar
+    dsgraph.bind('acl', ACL)
+    dsgraph.bind('rdf', RDF)
+    dsgraph.bind('rdfs', RDFS)
+    dsgraph.bind('foaf', FOAF)
+    dsgraph.bind('dso', DSO)
+
+    agn = Namespace("http://www.agentes.org#")
+    DirectoryAgent = Agent('DirectoryAgent',
+                           agn.Directory,
+                           'http://%s:%d/Register' % (hostname, port),
+                           'http://%s:%d/Stop' % (hostname, port))
+
+    mss_cnt = 0
+
+    cola1 = Queue()  # Cola de comunicacion entre procesos
+
     # Ponemos en marcha los behaviours como procesos
     ab1 = Process(target=agentbehavior1, args=(cola1,))
     ab1.start()

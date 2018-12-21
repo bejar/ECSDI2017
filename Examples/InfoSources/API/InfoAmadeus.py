@@ -46,5 +46,5 @@ resp = flights.extensive_search(
     departure_date='2017-02-05--2017-02-28',
     duration='4--10')
 
-print resp
+print(resp)
 

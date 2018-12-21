@@ -10,11 +10,11 @@ Ejemplos de RDFLIB
 
 """
 
-__author__ = 'bejar'
-
+from __future__ import print_function
 from rdflib.namespace import RDF, RDFS, Namespace, FOAF, OWL
 from rdflib import Graph, BNode, Literal
 from pprint import pformat
+__author__ = 'bejar'
 
 g = Graph()
 
@@ -28,13 +28,13 @@ g.add((p1, FOAF.age, v))
 # g.serialize('a.rdf')
 
 for a, b, c in g:
-    print a, b, c
+    print(a, b, c)
 
 for a, b in g[p1]:
-    print a, b
+    print(a, b)
 
 t = g.triples((None, FOAF.age, Literal(22)))
 
 for a in t:
-    print a
+    print(a)
 

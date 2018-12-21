@@ -1,227 +1,238 @@
 <?xml version="1.0"?>
 
 
-<!DOCTYPE Ontology [
+<!DOCTYPE rdf:RDF [
+    <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
-    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
-    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rfds "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY dso "http://www.semanticweb.org/directory-service-ontology#" >
 ]>
 
 
-<Ontology xmlns="http://www.w3.org/2002/07/owl#"
-     xml:base="http://www.semanticweb.org/directory-service-ontology#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+<rdf:RDF xmlns="http://www.semanticweb.org/directory-service-ontology#"
+     xml:base="http://www.semanticweb.org/directory-service-ontology"
+     xmlns:dso="http://www.semanticweb.org/directory-service-ontology#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:xml="http://www.w3.org/XML/1998/namespace"
-     ontologyIRI="http://www.semanticweb.org/directory-service-ontology#"
-     versionIRI="http://www.semanticweb.org/directory-service-ontology#1.0">
-    <Prefix name="" IRI="http://www.w3.org/2002/07/owl#"/>
-    <Prefix name="dso" IRI="http://www.semanticweb.org/directory-service-ontology#"/>
-    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
-    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
-    <Prefix name="foaf" IRI="http://xmlns.com/foaf/0.1/"/>
-    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
-    <Prefix name="rfds" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
-    <Annotation>
-        <AnnotationProperty abbreviatedIRI="rfds:comment"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">Ontologia de servicio de registro usando las operaciones de FIPA</Literal>
-    </Annotation>
-    <Declaration>
-        <Class IRI="Deregister"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="InfoAgent"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="Modify"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="Register"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="RegisterAction"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="RegisterResult"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="Search"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="ServiceAgent"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="SolverAgent"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="AgentType"/>
-    </Declaration>
-    <Declaration>
-        <DataProperty IRI="Address"/>
-    </Declaration>
-    <Declaration>
-        <DataProperty IRI="Uri"/>
-    </Declaration>
-    <Declaration>
-        <DataProperty abbreviatedIRI="foaf:Name"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="FlightsAgent"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="HotelsAgent"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="PaymentAgent"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="PersonalAgent"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="TravelServiceAgent"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="WeatherAgent"/>
-    </Declaration>
-    <SubClassOf>
-        <Class IRI="Deregister"/>
-        <Class IRI="RegisterAction"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="InfoAgent"/>
-        <Class IRI="ServiceAgent"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="Modify"/>
-        <Class IRI="RegisterAction"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="Register"/>
-        <Class IRI="RegisterAction"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="Search"/>
-        <Class IRI="RegisterAction"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="SolverAgent"/>
-        <Class IRI="ServiceAgent"/>
-    </SubClassOf>
-    <ClassAssertion>
-        <Class IRI="InfoAgent"/>
-        <NamedIndividual IRI="FlightsAgent"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="InfoAgent"/>
-        <NamedIndividual IRI="HotelsAgent"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="SolverAgent"/>
-        <NamedIndividual IRI="PaymentAgent"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="SolverAgent"/>
-        <NamedIndividual IRI="PersonalAgent"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="SolverAgent"/>
-        <NamedIndividual IRI="TravelServiceAgent"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="InfoAgent"/>
-        <NamedIndividual IRI="WeatherAgent"/>
-    </ClassAssertion>
-    <SubObjectPropertyOf>
-        <ObjectProperty IRI="AgentType"/>
-        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
-    </SubObjectPropertyOf>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="AgentType"/>
-        <Class IRI="Register"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="AgentType"/>
-        <Class IRI="Search"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="AgentType"/>
-        <Class IRI="ServiceAgent"/>
-    </ObjectPropertyRange>
-    <DataPropertyDomain>
-        <DataProperty IRI="Address"/>
-        <Class IRI="Register"/>
-    </DataPropertyDomain>
-    <DataPropertyDomain>
-        <DataProperty IRI="Address"/>
-        <Class IRI="RegisterResult"/>
-    </DataPropertyDomain>
-    <DataPropertyDomain>
-        <DataProperty IRI="Uri"/>
-        <Class IRI="Register"/>
-    </DataPropertyDomain>
-    <DataPropertyDomain>
-        <DataProperty IRI="Uri"/>
-        <Class IRI="RegisterResult"/>
-    </DataPropertyDomain>
-    <DataPropertyDomain>
-        <DataProperty abbreviatedIRI="foaf:Name"/>
-        <Class IRI="Register"/>
-    </DataPropertyDomain>
-    <DataPropertyDomain>
-        <DataProperty abbreviatedIRI="foaf:Name"/>
-        <Class IRI="RegisterResult"/>
-    </DataPropertyDomain>
-    <DataPropertyRange>
-        <DataProperty IRI="Address"/>
-        <Datatype abbreviatedIRI="xsd:string"/>
-    </DataPropertyRange>
-    <DataPropertyRange>
-        <DataProperty IRI="Uri"/>
-        <Datatype abbreviatedIRI="xsd:anyURI"/>
-    </DataPropertyRange>
-    <DataPropertyRange>
-        <DataProperty abbreviatedIRI="foaf:Name"/>
-        <Datatype abbreviatedIRI="xsd:string"/>
-    </DataPropertyRange>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rfds:comment"/>
-        <IRI>Deregister</IRI>
-        <Literal xml:lang="es" datatypeIRI="&rdf;PlainLiteral">Borrado del registro</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rfds:comment"/>
-        <IRI>Modify</IRI>
-        <Literal xml:lang="es" datatypeIRI="&rdf;PlainLiteral">Modificacion del resistro</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rfds:comment"/>
-        <IRI>Register</IRI>
-        <Literal xml:lang="es" datatypeIRI="&rdf;PlainLiteral">Registro en el servicio</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rfds:comment"/>
-        <IRI>RegisterAction</IRI>
-        <Literal xml:lang="es" datatypeIRI="&rdf;PlainLiteral">Acciones del servicio de registro</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rfds:comment"/>
-        <IRI>RegisterResult</IRI>
-        <Literal xml:lang="es" datatypeIRI="&rdf;PlainLiteral">Objeto de resultado</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rfds:comment"/>
-        <IRI>Search</IRI>
-        <Literal xml:lang="es" datatypeIRI="&rdf;PlainLiteral">Busqueda en el registro</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rfds:comment"/>
-        <IRI>ServiceAgent</IRI>
-        <Literal datatypeIRI="&rdf;PlainLiteral">Tipos de los agentes de servicio</Literal>
-    </AnnotationAssertion>
-</Ontology>
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rfds="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/directory-service-ontology#">
+        <rfds:comment>Ontologia de servicio de registro usando las operaciones de FIPA</rfds:comment>
+        <owl:versionIRI rdf:resource="&dso;1.0"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/directory-service-ontology#AgentType -->
+
+    <owl:ObjectProperty rdf:about="&dso;AgentType">
+        <rfds:domain rdf:resource="&dso;Register"/>
+        <rfds:domain rdf:resource="&dso;Search"/>
+        <rfds:range rdf:resource="&dso;ServiceAgent"/>
+        <rfds:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/directory-service-ontology#Address -->
+
+    <owl:DatatypeProperty rdf:about="&dso;Address">
+        <rfds:domain rdf:resource="&dso;Register"/>
+        <rfds:domain rdf:resource="&dso;RegisterResult"/>
+        <rfds:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/directory-service-ontology#Uri -->
+
+    <owl:DatatypeProperty rdf:about="&dso;Uri">
+        <rfds:domain rdf:resource="&dso;Register"/>
+        <rfds:domain rdf:resource="&dso;RegisterResult"/>
+        <rfds:range rdf:resource="&xsd;anyURI"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Name -->
+
+    <owl:DatatypeProperty rdf:about="&foaf;Name">
+        <rfds:domain rdf:resource="&dso;Register"/>
+        <rfds:domain rdf:resource="&dso;RegisterResult"/>
+        <rfds:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/directory-service-ontology#Deregister -->
+
+    <owl:Class rdf:about="&dso;Deregister">
+        <rfds:subClassOf rdf:resource="&dso;RegisterAction"/>
+        <rfds:comment xml:lang="es">Borrado del registro</rfds:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/directory-service-ontology#InfoAgent -->
+
+    <owl:Class rdf:about="&dso;InfoAgent">
+        <rfds:subClassOf rdf:resource="&dso;ServiceAgent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/directory-service-ontology#Modify -->
+
+    <owl:Class rdf:about="&dso;Modify">
+        <rfds:subClassOf rdf:resource="&dso;RegisterAction"/>
+        <rfds:comment xml:lang="es">Modificacion del resistro</rfds:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/directory-service-ontology#Register -->
+
+    <owl:Class rdf:about="&dso;Register">
+        <rfds:subClassOf rdf:resource="&dso;RegisterAction"/>
+        <rfds:comment xml:lang="es">Registro en el servicio</rfds:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/directory-service-ontology#RegisterAction -->
+
+    <owl:Class rdf:about="&dso;RegisterAction">
+        <rfds:comment xml:lang="es">Acciones del servicio de registro</rfds:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/directory-service-ontology#RegisterResult -->
+
+    <owl:Class rdf:about="&dso;RegisterResult">
+        <rfds:comment xml:lang="es">Objeto de resultado</rfds:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/directory-service-ontology#Search -->
+
+    <owl:Class rdf:about="&dso;Search">
+        <rfds:subClassOf rdf:resource="&dso;RegisterAction"/>
+        <rfds:comment xml:lang="es">Busqueda en el registro</rfds:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/directory-service-ontology#ServiceAgent -->
+
+    <owl:Class rdf:about="&dso;ServiceAgent">
+        <rfds:comment>Tipos de los agentes de servicio</rfds:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/directory-service-ontology#SolverAgent -->
+
+    <owl:Class rdf:about="&dso;SolverAgent">
+        <rfds:subClassOf rdf:resource="&dso;ServiceAgent"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/directory-service-ontology#FlightsAgent -->
+
+    <owl:NamedIndividual rdf:about="&dso;FlightsAgent">
+        <rdf:type rdf:resource="&dso;InfoAgent"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/directory-service-ontology#HotelsAgent -->
+
+    <owl:NamedIndividual rdf:about="&dso;HotelsAgent">
+        <rdf:type rdf:resource="&dso;InfoAgent"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/directory-service-ontology#PaymentAgent -->
+
+    <owl:NamedIndividual rdf:about="&dso;PaymentAgent">
+        <rdf:type rdf:resource="&dso;SolverAgent"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/directory-service-ontology#PersonalAgent -->
+
+    <owl:NamedIndividual rdf:about="&dso;PersonalAgent">
+        <rdf:type rdf:resource="&dso;SolverAgent"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/directory-service-ontology#TravelServiceAgent -->
+
+    <owl:NamedIndividual rdf:about="&dso;TravelServiceAgent">
+        <rdf:type rdf:resource="&dso;SolverAgent"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/directory-service-ontology#WeatherAgent -->
+
+    <owl:NamedIndividual rdf:about="&dso;WeatherAgent">
+        <rdf:type rdf:resource="&dso;InfoAgent"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
 
 
 

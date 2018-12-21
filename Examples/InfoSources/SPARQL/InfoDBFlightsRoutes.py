@@ -54,8 +54,8 @@ qres = g.query(
 for r in qres:
     ap = r['f']
 
-print 'Aeropuerto:', ap
-print
+print('Aeropuerto:', ap)
+print()
 
 # Consulta todos los vuelos que conectan con ese aeropuerto
 airquery = """
@@ -70,14 +70,14 @@ airquery = """
         }
     """ % ap
 
-print airquery
+print(airquery)
 
 qres = g.query(airquery, initNs=dict(tio=TIO))
 
-print 'Num Vuelos:', len(qres.result)
+print('Num Vuelos:', len(qres.result))
 print
 
 
 # Imprime los resultados
 for row in qres.result:
-    print row
+    print(row)

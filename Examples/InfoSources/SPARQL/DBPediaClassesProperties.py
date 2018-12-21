@@ -49,6 +49,6 @@ results = sparql.query().convert()
 
 
 for r in results['results']['bindings']:
-    print r
+    print(r)
 
 

@@ -8,7 +8,6 @@ Agente que se registra como agente de hoteles y espera peticiones
 
 @author: javier
 """
-__author__ = 'javier'
 
 from multiprocessing import Process, Queue
 import socket
@@ -24,68 +23,10 @@ from AgentUtil.ACLMessages import build_message, send_message, get_message_prope
 from AgentUtil.Agent import Agent
 from AgentUtil.Logging import config_logger
 
-
-# Definimos los parametros de la linea de comandos
-parser = argparse.ArgumentParser()
-parser.add_argument('--open', help="Define si el servidor esta abierto al exterior o no", action='store_true',
-                    default=False)
-parser.add_argument('--port', type=int, help="Puerto de comunicacion del agente")
-parser.add_argument('--dhost', default='localhost', help="Host del agente de directorio")
-parser.add_argument('--dport', type=int, help="Puerto de comunicacion del agente de directorio")
-
-# Logging
-logger = config_logger(level=1)
-
-# parsing de los parametros de la linea de comandos
-args = parser.parse_args()
-
-# Configuration stuff
-if args.port is None:
-    port = 9001
-else:
-    port = args.port
-
-if args.open is None:
-    hostname = '0.0.0.0'
-else:
-    hostname = socket.gethostname()
-
-if args.dport is None:
-    dport = 9000
-else:
-    dport = args.dport
-
-if args.dhost is None:
-    dhostname = socket.gethostname()
-else:
-    dhostname = args.dhost
+__author__ = 'javier'
 
 # Flask stuff
 app = Flask(__name__)
-
-# Configuration constants and variables
-agn = Namespace("http://www.agentes.org#")
-
-# Contador de mensajes
-mss_cnt = 0
-
-# Datos del Agente
-InfoAgent = Agent('AgenteInfo1',
-                  agn.AgenteInfo,
-                  'http://%s:%d/comm' % (hostname, port),
-                  'http://%s:%d/Stop' % (hostname, port))
-
-# Directory agent address
-DirectoryAgent = Agent('DirectoryAgent',
-                       agn.Directory,
-                       'http://%s:%d/Register' % (dhostname, dport),
-                       'http://%s:%d/Stop' % (dhostname, dport))
-
-# Global dsgraph triplestore
-dsgraph = Graph()
-
-# Cola de comunicacion entre procesos
-cola1 = Queue()
 
 
 def register_message():
@@ -233,13 +174,74 @@ def agentbehavior1(cola):
         if v == 0:
             fin = True
         else:
-            print v
+            print(v)
 
             # Selfdestruct
             # requests.get(InfoAgent.stop)
 
 
 if __name__ == '__main__':
+    # Definimos los parametros de la linea de comandos
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--open', help="Define si el servidor esta abierto al exterior o no", action='store_true',
+                        default=False)
+    parser.add_argument('--port', type=int, help="Puerto de comunicacion del agente")
+    parser.add_argument('--dhost', default='localhost', help="Host del agente de directorio")
+    parser.add_argument('--dport', type=int, help="Puerto de comunicacion del agente de directorio")
+
+    # Logging
+    logger = config_logger(level=1)
+
+    # parsing de los parametros de la linea de comandos
+    args = parser.parse_args()
+
+    # Configuration stuff
+    if args.port is None:
+        port = 9001
+    else:
+        port = args.port
+
+    if args.open is None:
+        hostname = '0.0.0.0'
+    else:
+        hostname = socket.gethostname()
+
+    if args.dport is None:
+        dport = 9000
+    else:
+        dport = args.dport
+
+    if args.dhost is None:
+        dhostname = socket.gethostname()
+    else:
+        dhostname = args.dhost
+
+
+
+    # Configuration constants and variables
+    agn = Namespace("http://www.agentes.org#")
+
+    # Contador de mensajes
+    mss_cnt = 0
+
+    # Datos del Agente
+    InfoAgent = Agent('AgenteInfo1',
+                      agn.AgenteInfo,
+                      'http://%s:%d/comm' % (hostname, port),
+                      'http://%s:%d/Stop' % (hostname, port))
+
+    # Directory agent address
+    DirectoryAgent = Agent('DirectoryAgent',
+                           agn.Directory,
+                           'http://%s:%d/Register' % (dhostname, dport),
+                           'http://%s:%d/Stop' % (dhostname, dport))
+
+    # Global dsgraph triplestore
+    dsgraph = Graph()
+
+    # Cola de comunicacion entre procesos
+    cola1 = Queue()
+
     # Ponemos en marcha los behaviors
     ab1 = Process(target=agentbehavior1, args=(cola1,))
     ab1.start()

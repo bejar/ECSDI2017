@@ -9,9 +9,9 @@ Created on 12/02/2014
 @author: javier
 """
 
-__author__ = 'javier'
-
 from multiprocessing import Process, Manager, Lock
+
+__author__ = 'javier'
 
 
 def proceso1(nsp, l):
@@ -21,7 +21,7 @@ def proceso1(nsp, l):
     for i, v in enumerate(a):
         data[v] = i
     nsp.data = data
-    print nsp.data
+    print(nsp.data)
     l.release()
 
 
@@ -32,7 +32,7 @@ def proceso2(nsp, l):
     for i, v in enumerate(a):
         data[v] = i
     nsp.data = data
-    print nsp.data
+    print(nsp.data)
     l.release()
 
 
@@ -49,5 +49,5 @@ if __name__ == '__main__':
     p1.join()
     p2.join()
 
-    print shnsp.data
+    print(shnsp.data)
 

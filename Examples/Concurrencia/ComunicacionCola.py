@@ -18,7 +18,7 @@ def cuenta(q):
     while q.empty():
         pass
     while not q.empty():
-        print q.get(timeout=0.3)
+        print(q.get(timeout=0.3))
         time.sleep(1)
 
 

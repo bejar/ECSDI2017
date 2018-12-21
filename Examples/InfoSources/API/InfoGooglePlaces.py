@@ -29,20 +29,20 @@ query_result = google_places.nearby_search(
     radius=300, types=['hotel'])
 
 # Imprimimos informacion de los resultados
-print query_result
+print(query_result)
 if query_result.has_attributions:
-    print query_result.html_attributions
+    print(query_result.html_attributions)
 
 for place in query_result.places:
     # Returned places from a query are place summaries.
-    print place.name
-    print place.geo_location
-    print place.reference
+    print(place.name)
+    print(place.geo_location)
+    print(place.reference)
 
     # The following method has to make a further API call.
     place.get_details()
     # Referencing any of the attributes below, prior to making a call to
     # get_details() will raise a googleplaces.GooglePlacesAttributeError.
     pprint.pprint(place.details)  # A dict matching the JSON response from Google.
-    print place.local_phone_number
+    print(place.local_phone_number)
 

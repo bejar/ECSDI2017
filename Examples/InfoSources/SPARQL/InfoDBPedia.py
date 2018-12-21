@@ -54,7 +54,7 @@ print('\n\n Clases a las que pertenece la URI de Barcelona (del diccionario pyth
 vars = resdic['head']['vars']
 for res in resdic['results']['bindings']:
     for v in vars:
-        print v, ':', res[v]
+        print(v, ':', res[v])
 
 
 
@@ -75,13 +75,13 @@ resgraph = sparql.query().convert()
 
 # Resultado en N3
 print('\n\n Clases a las que pertenece la URI de Barcelona (como grafo RDF')
-print resgraph.serialize(format='n3')
+print(resgraph.serialize(format='n3'))
 
 # Obtenemos todos los predicados
 
 print('\n\n Clases a las que pertenece la URI de Barcelona (recorriendo las tripletas)')
 for _, _, p in resgraph:
-    print p
+    print(p)
 
 
 sparql.setQuery("""

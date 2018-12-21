@@ -32,7 +32,7 @@ __author__ = 'bejar'
 from AgentUtil.APIKeys import SKYSCANNER_KEY
 
 
-from skyscanner.skyscanner import  FlightsCache
+from skyscanner.skyscanner import FlightsCache
 
 
 flights_cache_service = FlightsCache(SKYSCANNER_KEY)

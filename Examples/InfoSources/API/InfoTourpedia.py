@@ -36,24 +36,24 @@ r = requests.get(TOURPEDIA_END_POINT+ 'getPlaces',
 
 
 dic = r.json()
-print len(dic)
+print(len(dic))
 
 # Cada lugar tiene una serie de atributos, entre ellos la llamada a la API que da los detalles del lugar, que
 # a su vez tiene otro conjunto de atributos
 for d in dic:
     if 'subCategory' in d:
-        print d['subCategory']
+        print(d['subCategory'])
 
         r = requests.get(d['details']) # usamos la llamada a la API ya codificada en el atributo
         dic2 = r.json()
         if 'description' in dic2:
-            print dic2['description']
+            print(dic2['description'])
         if 'name' in dic2:
-            print dic2['name']
+            print(dic2['name'])
         if 'address' in dic2:
-            print dic2['address']
+            print(dic2['address'])
         if 'lat' in dic2:
-            print dic2['lat'], dic2['lng']
+            print(dic2['lat'], dic2['lng'])
 
 
 

@@ -40,7 +40,7 @@ results = sparql.query().convert()
 vars = results['head']['vars']
 for res in results['results']['bindings']:
     for v in vars:
-        print v, ':', res[v]
+        print(v, ':', res[v])
 
 
 

@@ -27,7 +27,7 @@ r = requests.get(WEATHER_END_POINT,
 
 # Transformamos la respuesta de JSON a un diccionario python
 dic = r.json()
-print dic
+print(dic)
 # Imprimimos los elementos de la respuesta
 for d in dic['list']:
-    print d
+    print(d)

@@ -14,8 +14,6 @@ Asume que el agente de registro esta en el puerto 9000
 @author: javier
 """
 
-__author__ = 'javier'
-
 from multiprocessing import Process, Queue
 import socket
 
@@ -24,6 +22,8 @@ from flask import Flask
 
 from AgentUtil.FlaskServer import shutdown_server
 from AgentUtil.Agent import Agent
+
+__author__ = 'javier'
 
 
 # Configuration stuff
@@ -107,6 +107,6 @@ if __name__ == '__main__':
 
     # Esperamos a que acaben los behaviors
     ab1.join()
-    print 'The End'
+    print('The End')
 
 

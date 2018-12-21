@@ -30,12 +30,12 @@ client = foursquare.Foursquare(client_id=CLIENT_ID, client_secret=CLIENT_SECRET)
 v = client.venues.search(params={'ll': '41.4,2.14', 'intent': 'browse', 'radius': '4000', 'query': 'museo'})
 
 # De la respuesta imprime lo que hay en la clave 'venues' del diccionario respuesta
-print len(v['venues'])
+print(len(v['venues']))
 
 
 # Imprime información de cada uno de los lugares encontrados
 for vn in v['venues']:
-    print vn['name'],
+    print(vn['name'])
     if len(vn['categories']) != 0:
-        print vn['categories'][0]['name']
+        print(vn['categories'][0]['name'])
 
