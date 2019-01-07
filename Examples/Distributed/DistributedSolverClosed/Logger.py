@@ -17,7 +17,7 @@ Logger
 
 """
 
-from io import StringIO
+from io import BytesIO
 import socket
 import argparse
 from FlaskServer import shutdown_server
@@ -85,7 +85,7 @@ def info():
                 bar.append(0)
         lbars.append(bar)
 
-    img = StringIO.StringIO()
+    img = BytesIO()
     index = np.arange(len(solvers))
     bar_width = 0.35
     fig = plt.figure(figsize=(5, 8), dpi=100)
@@ -101,7 +101,7 @@ def info():
     plt.tight_layout()
     plt.savefig(img, format='png')
     img.seek(0)
-    plot_url = base64.b64encode(img.getvalue())
+    plot_url = base64.b64encode(img.getvalue()).decode()
     plt.close()
 
     return render_template('logview.html', plot_url=plot_url)
@@ -143,9 +143,9 @@ if __name__ == '__main__':
         diraddress = args.dir
 
     # Registramos el solver aritmetico en el servicio de directorio
-    loggeradd = 'http://%s:%d' % (socket.gethostname(), port)
+    loggeradd = f'http://{socket.gethostname()}:{port}'
     loggerid = socket.gethostname().split('.')[0] + '-' + str(port)
-    mess = 'REGISTER|%s,LOGGER,%s' % (loggerid, loggeradd)
+    mess = f'REGISTER|{loggerid},LOGGER,{loggeradd}'
 
     done = False
     while not done:
@@ -156,8 +156,9 @@ if __name__ == '__main__':
             pass
 
     if 'OK' in resp:
+        print(f'LOGGER successfully registered')
         # Ponemos en marcha el servidor Flask
         app.run(host=hostname, port=port, debug=True, use_reloader=False)
 
-        mess = 'UNREGISTER|%s' % (loggerid)
+        mess = f'UNREGISTER|{loggerid}'
         requests.get(diraddress + '/message', params={'message': mess})

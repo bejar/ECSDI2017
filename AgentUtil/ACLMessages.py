@@ -32,7 +32,7 @@ def build_message(gmess, perf, sender=None, receiver=None,  content=None, msgcnt
     :return:
     """
     # Añade los elementos del speech act al grafo del mensaje
-    mssid = 'message-'+str(sender.__hash__()) + '-{:{fill}4d}'.format(msgcnt, fill='0')
+    mssid = f'message-{sender.__hash__()}-{msgcnt:04}'
     ms = ACL[mssid]
     gmess.bind('acl', ACL)
     gmess.add((ms, RDF.type, ACL.FipaAclMessage))

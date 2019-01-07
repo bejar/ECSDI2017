@@ -129,6 +129,7 @@ if __name__ == '__main__':
             pass
 
     if 'OK' in resp:
+        print(f'ARITH {solverid} successfully registered')
         # Ponemos en marcha el servidor Flask
         app.run(host=hostname, port=port, debug=True, use_reloader=False)
 

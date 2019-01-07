@@ -1,12 +1,12 @@
 """
-.. module:: LetterCounter
+.. module:: Solver
 
-LetterCounter
+Solver
 *************
 
-:Description: LetterCounter
+:Description: Solver
 
-    Calcula la frecuencia de las letras de un string y retorna las 10 mas frecuentes
+    Solver generico que pasa los problemas a solvers especializados
 
 :Authors: bejar
     
@@ -157,6 +157,7 @@ if __name__ == '__main__':
             pass
 
     if 'OK' in resp:
+        print(f'SOLVER {solverid} successfully registered')
         # Buscamos el logger si existe en el registro
         loggeradd = requests.get(diraddress + '/message', params={'message': 'SEARCH|LOGGER'}).text
         if 'OK' in loggeradd:

@@ -1,12 +1,12 @@
 """
-.. module:: LetterCounter
+.. module:: Solver
 
-LetterCounter
+Solver
 *************
 
-:Description: LetterCounter
+:Description: Solver
 
-    Calcula la frecuencia de las letras de un string y retorna las 10 mas frecuentes
+    Solver generico que pasa los problemas a solvers especializados
 
 :Authors: bejar
     
@@ -74,7 +74,7 @@ def message():
                             # Registramos la actividad en el logger si existe
                             if logger is not None:
                                 try:
-                                    requests.get(logger + '/message', params={'message': solverid + ',' + probtype},
+                                    requests.get(logger + '/message', params={'message': f'{solverid},{probtype}'},
                                                  timeout=5)
                                 except Exception:
                                     pass
@@ -94,7 +94,7 @@ def message():
                         problems[probid][3] = 'SOLVED'
                         print()
                         requests.get(problems[probid][1] + '/message',
-                                     params={'message': 'SOLVED|%s,%s' % (probid, sol)})
+                                     params={'message': f'SOLVED|{probid},{sol}'})
                 return 'OK'
             # parametros mensaje CONTRACT = "PROBTYPE,SOLVERID,SOLVERADDRESS"
             elif messtype == 'CONTRACT':
@@ -166,9 +166,9 @@ if __name__ == '__main__':
         diraddress = args.dir
 
     # Registramos el solver en el servicio de directorio
-    solveradd = 'http://%s:%d' % (socket.gethostname(), port)
+    solveradd = f'http://{socket.gethostname()}:{port}'
     solverid = socket.gethostname().split('.')[0] + '-' + str(port)
-    mess = 'REGISTER|%s,SOLVER,%s' % (solverid, solveradd)
+    mess = f'REGISTER|{solverid},SOLVER,{solveradd}'
 
     done = False
     while not done:
@@ -179,6 +179,8 @@ if __name__ == '__main__':
             pass
 
     if 'OK' in resp:
+        print(f'SOLVER {solverid} successfully registered')
+
         # Buscamos el logger si existe en el registro
         loggeradd = requests.get(diraddress + '/message', params={'message': 'SEARCH|LOGGER'}).text
         if 'OK' in loggeradd:
@@ -187,5 +189,5 @@ if __name__ == '__main__':
         # Ponemos en marcha el servidor Flask
         app.run(host=hostname, port=port, debug=False, use_reloader=False)
 
-        mess = 'UNREGISTER|%s' % (solverid)
+        mess = f'UNREGISTER|{solverid}'
         requests.get(diraddress + '/message', params={'message': mess})

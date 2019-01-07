@@ -115,7 +115,7 @@ if __name__ == '__main__':
         diraddress = args.dir
 
     # El solver aritmetico busca en el servicio de directorio 2 solvers con los que asociarse
-    solveradd = 'http://%s:%d' % (socket.gethostname(), port)
+    solveradd = f'http://{socket.gethostname()}:{port}'
     solverid = socket.gethostname().split('.')[0] + '-' + str(port)
     mess = 'SEARCH|SOLVER,2'
 
@@ -129,10 +129,11 @@ if __name__ == '__main__':
 
     # Si tenemos respuesta preguntamos a los solvers si nos podemos registrar con ellos
     if 'OK' in resp:
+        print(f'FREQ {solverid} successfully registered')
         laddr = resp[4:].split(',')  # Obtenemos las direcciones de los solvers
         reg = []
         for addr in laddr:
-            mess = 'CONTRACT|MFREQ,%s,%s' % (solverid, solveradd)
+            mess = f'CONTRACT|MFREQ,{solverid},{solveradd}'
             done = False
             while not done:
                 try:
@@ -150,8 +151,10 @@ if __name__ == '__main__':
 
         # Ponemos en marcha el servidor Flask
         app.run(host=hostname, port=port, debug=True, use_reloader=False)
+
+        # Notificamos a los solvers contratados de que ya no son necesarios
         for soladd in solvers:
-            mess = 'FIRED|%s' % (solverid)
+            mess = f'FIRED|{solverid}'
             requests.get(soladd + '/message', params={'message': mess})
     else:
         print('NO SOLVERS AVAILABLE FOR HIRE')

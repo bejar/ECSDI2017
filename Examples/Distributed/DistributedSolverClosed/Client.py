@@ -119,7 +119,7 @@ def send_message(probtype, problem):
         solveradd = solveradd[4:]
 
         problems[probid] = [probtype, problem, 'PENDING']
-        mess = 'SOLVE|%s,%s,%s,%s' % (probtype, clientadd, probid, sanitize(problem))
+        mess = f'SOLVE|{probtype},{clientadd},{probid},{sanitize(problem)}'
         resp = requests.get(solveradd + '/message', params={'message': mess}).text
         if 'ERROR' not in resp:
             problems[probid] = [probtype, problem, 'PENDING']
@@ -159,7 +159,7 @@ if __name__ == '__main__':
     else:
         hostname = socket.gethostname()
 
-    clientadd = 'http://%s:%d' % (socket.gethostname(), port)
+    clientadd = f'http://{socket.gethostname()}:{port}'
     clientid = socket.gethostname().split('.')[0] + '-' + str(port)
 
     if args.dir is None:

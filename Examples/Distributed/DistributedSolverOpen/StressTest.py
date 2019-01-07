@@ -38,10 +38,10 @@ if __name__ == '__main__':
     probcounter = 0
     diraddress = args.dir
     clientaddress = args.client
-    testid = ''.join(random.choice(string.lowercase) for i in range(10))
+    testid = ''.join(random.choice(string.ascii_lowercase) for i in range(10))
 
     for i in range(args.n):
-        print('TEST %d' % i)
+        print(f'TEST {i}')
         probcounter += 1
 
         solveradd = requests.get(diraddress + '/message', params={'message': 'SEARCH|SOLVER'}).text
@@ -49,9 +49,9 @@ if __name__ == '__main__':
         if 'OK' in solveradd:
             # Le quitamos el OK de la respuesta
             solveradd = solveradd[4:]
-            probid = f'TESTARITH-{testid}-{probcounter}'
+            probid = f'TESTARITH-{testid}-{probcounter:03}'
             mess = f'SOLVE|ARITH,{clientaddress},{probid},{i}+{i}'
             resp = requests.get(solveradd + '/message', params={'message': mess}, timeout=5).text
             probid = f'TESTMFREQ-{testid}-{probcounter}'
-            mess = f"SOLVE|MFREQ,{clientaddress},{probid},{''.join(random.choice(string.lowercase) for i in range(500))}"
+            mess = f"SOLVE|MFREQ,{clientaddress},{probid},{''.join(random.choice(string.ascii_lowercase) for i in range(500))}"
             resp = requests.get(solveradd + '/message', params={'message': mess}, timeout=5).text

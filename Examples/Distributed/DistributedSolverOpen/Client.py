@@ -109,13 +109,11 @@ def send_message(probtype, problem):
     global port
     global problems
 
-    probid = '%s-%02d' % (clientid, probcounter)
+    probid = '{clientid}-{probcounter:03}'
     probcounter += 1
 
-    print(probtype)
 
     solveradd = requests.get(diraddress + '/message', params={'message': f'SEARCH|SOLVER'}).text
-    print(solveradd)
     if 'OK' in solveradd:
         # Le quitamos el OK de la respuesta
         solveradd = solveradd[4:]
