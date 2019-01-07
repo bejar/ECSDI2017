@@ -6,17 +6,20 @@ AgentAmadeus
 
 :Description: AgentAmadeus
 
-    Uso de la API de Amadeus, hoteles, vuelos, tren
+    API de Amadeus self-service test environment
 
-    http://sandbox.amadeus.com
+    Hace falta darse de alta en el portal de desarrolladores (https://developers.amadeus.com) para conseguir
+    una KEY para acceder a la API
 
-    Documentacion de la API REST (usando requests)
+    El numero de queries en el entorno de test esta limitado mensualmente (pero os deberia sobrar)
 
-    https://sandbox.amadeus.com/api-catalog
+    https://developers.amadeus.com/pricing
 
-    Tambien se puede usar el modulo python amadeus
 
-    http://amadeus.readthedocs.io/en/latest/index.html
+    Se puede conectar directamente mediante la libreria request llamando a la API REST o usando la libreria
+    Python desarrollada por Amadeus
+
+    https://github.com/amadeus4dev/amadeus-python
 
 :Authors: bejar
     
@@ -27,24 +30,25 @@ AgentAmadeus
 
 """
 
-from AgentUtil.APIKeys import AMADEUS_KEY
-from amadeus import Flights
+from AgentUtil.APIKeys import AMADEUS_KEY, AMADEUS_SECRET
+from amadeus import Client, ResponseError
+
+amadeus = Client(
+    client_id=AMADEUS_KEY,
+    client_secret=AMADEUS_SECRET
+)
+
+try:
+    response = amadeus.shopping.flight_destinations.get(origin='MAD')
+    print(response.data)
+    print('-----------------------------------------------------------')
+    response = amadeus.shopping.flight_offers.get(origin='MAD', destination='NYC', departureDate='2019-08-01')
+    print(response.data)
+    print('-----------------------------------------------------------')
+    response = amadeus.shopping.hotel_offers.get(cityCode ='NYC')
+    print(response.data)
+except ResponseError as error:
+    print(error)
 
 
-__author__ = 'bejar'
-
-
-flights = Flights(AMADEUS_KEY)
-# resp = flights.inspiration_search(
-#     origin='BCN', destination='GVA',
-#     departure_date="2017-01-25--2017-02-28")
-#
-
-resp = flights.extensive_search(
-    origin='MAD',
-    destination='BCN',
-    departure_date='2017-02-05--2017-02-28',
-    duration='4--10')
-
-print(resp)
 

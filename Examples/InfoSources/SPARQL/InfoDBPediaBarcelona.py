@@ -14,7 +14,7 @@ tienen definidos
 """
 __author__ = 'javier'
 
-from SPARQLWrapper import SPARQLWrapper, JSON, XML, RDF, N3
+from SPARQLWrapper import SPARQLWrapper, JSON, XML
 from rdflib import Graph, BNode, Literal
 
 from AgentUtil.SPARQLPoints import DBPEDIA
@@ -51,9 +51,12 @@ sparql.setQuery("""
 """)
 
 # Obtenemos los resultado en formato RDF que ya es un Graph() de RDFLib
-sparql.setReturnFormat(RDF)
+sparql.setReturnFormat(XML)
 resgraph = sparql.query().convert()
 
+
+print()
+print('********************************')
 for s, p, o in resgraph:
     print(s, '--', p, '--', o)
 

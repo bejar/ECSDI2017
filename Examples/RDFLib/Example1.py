@@ -10,7 +10,6 @@ Ejemplos de RDFLIB
 
 """
 
-from __future__ import print_function
 from rdflib.namespace import RDF, RDFS, Namespace, FOAF, OWL
 from rdflib import Graph, BNode, Literal
 from pprint import pformat

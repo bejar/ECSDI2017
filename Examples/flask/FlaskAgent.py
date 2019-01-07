@@ -43,9 +43,6 @@ from multiprocessing import Process
 
 __author__ = 'bejar'
 
-
-
-
 app = Flask(__name__)
 
 

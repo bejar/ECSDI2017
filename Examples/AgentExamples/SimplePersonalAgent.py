@@ -159,9 +159,6 @@ def agentbehavior1():
     # que esta en una supuesta ontologia de acciones de agentes
     infoagent_search_message(ragn_addr, ragn_uri)
 
-    # r = requests.get(ra_stop)
-    # print r.text
-
     # Selfdestruct
     requests.get(AgentePersonal.stop)
 
