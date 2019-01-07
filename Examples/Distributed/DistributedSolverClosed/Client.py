@@ -42,7 +42,8 @@ def message():
     """
     global problems
 
-    if request.form.has_key('message'):
+    # if request.form.has_key('message'):
+    if 'message' in request.form:
         send_message(request.form['problem'], request.form['message'])
         return redirect(url_for('.iface'))
     else:

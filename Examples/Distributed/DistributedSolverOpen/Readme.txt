@@ -37,7 +37,7 @@ asignar una tarea a otros agentes
     Parametros:
       --open = permite conexiones desde hosts remotos (no por defecto)
       --port = port de comunicacion (9001 por defecto)
-      --directory = Direccion completa del servicio de directorio
+      --dir = Direccion completa del servicio de directorio
 
     Entradas Web:
        /iface = Formulario para enviar problemas
@@ -50,7 +50,7 @@ asignar una tarea a otros agentes
     Parametros:
       --open = permite conexiones desde hosts remotos (no por defecto)
       --port = port de comunicacion (9010 por defecto)
-      --directory = Direccion completa del servicio de directorio
+      --dir = Direccion completa del servicio de directorio
 
 
     Entradas Web:
@@ -64,7 +64,7 @@ asignar una tarea a otros agentes
     Parametros:
       --open = permite conexiones desde hosts remotos (no por defecto)
       --port = port de comunicacion (9020 por defecto)
-      --directory = Direccion completa del servicio de directorio
+      --dir = Direccion completa del servicio de directorio
 
  * LetterCounter.py
 
@@ -73,7 +73,7 @@ asignar una tarea a otros agentes
     Parametros:
       --open = permite conexiones desde hosts remotos (no por defecto)
       --port = port de comunicacion (9030 por defecto)
-      --directory = Direccion completa del servicio de directorio
+      --dir = Direccion completa del servicio de directorio
 
  * Logger.py
 
@@ -81,7 +81,7 @@ asignar una tarea a otros agentes
 
       --open = permite conexiones desde hosts remotos (no por defecto)
       --port = port de comunicacion (9100 por defecto)
-      --directory = Direccion completa del servicio de directorio
+      --dir = Direccion completa del servicio de directorio
 
     Entradas Web:
        /info = Grafica de la actividad de los solvers

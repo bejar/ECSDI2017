@@ -65,7 +65,7 @@ def message():
                     # Buscamos el resolvedor del tipo adecuado y le mandamos el problema
                     if probtype in ['ARITH', 'MFREQ']:
                         minionadd = requests.get(diraddress + '/message',
-                                                 params={'message': 'SEARCH|%s' % probtype}).text
+                                                 params={'message': f'SEARCH|{probtype}'}).text
                         if 'OK' in minionadd:
                             # Le quitamos el OK de la respuesta
                             minionadd = minionadd[4:]
@@ -75,7 +75,7 @@ def message():
                             # Registramos la actividad en el logger si existe
                             if logger is not None:
                                 try:
-                                    requests.get(logger + '/message', params={'message': solverid + ',' + probtype},
+                                    requests.get(logger + '/message', params={'message': f'{solverid},{probtype}'},
                                                  timeout=5)
                                 except Exception:
                                     pass
@@ -94,7 +94,7 @@ def message():
                         problems[probid][3] = 'SOLVED'
                         print()
                         requests.get(problems[probid][1] + '/message',
-                                     params={'message': 'SOLVED|%s,%s' % (probid, sol)})
+                                     params={'message': f'SOLVED|{probid},{sol}'})
                 return 'OK'
     return 'ERROR: UNKNOWN ERROR'
 
@@ -144,9 +144,9 @@ if __name__ == '__main__':
         diraddress = args.dir
 
     # Registramos el solver en el servicio de directorio
-    solveradd = 'http://%s:%d' % (socket.gethostname(), port)
+    solveradd = f'http://{socket.gethostname()}:{port}'
     solverid = socket.gethostname().split('.')[0] + '-' + str(port)
-    mess = 'REGISTER|%s,SOLVER,%s' % (solverid, solveradd)
+    mess = f'REGISTER|{solverid},SOLVER,{solveradd}'
 
     done = False
     while not done:
@@ -165,5 +165,5 @@ if __name__ == '__main__':
         # Ponemos en marcha el servidor Flask
         app.run(host=hostname, port=port, debug=False, use_reloader=False)
 
-        mess = 'UNREGISTER|%s' % (solverid)
+        mess = f'UNREGISTER|{solverid}'
         requests.get(diraddress + '/message', params={'message': mess})

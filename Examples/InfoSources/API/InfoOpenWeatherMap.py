@@ -15,6 +15,7 @@ __author__ = 'javier'
 
 import requests
 from AgentUtil.APIKeys import WEATHERAPPID
+
 # Endpoint que da previsiones del tiempo a 5 dias
 WEATHER_END_POINT = 'http://api.openweathermap.org/data/2.5/forecast'
 

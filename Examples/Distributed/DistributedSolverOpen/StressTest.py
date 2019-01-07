@@ -49,9 +49,9 @@ if __name__ == '__main__':
         if 'OK' in solveradd:
             # Le quitamos el OK de la respuesta
             solveradd = solveradd[4:]
-            probid = '%s-%s-%2d' % ('TESTARITH', testid, probcounter)
-            mess = 'SOLVE|%s,%s,%s,%s' % ('ARITH', clientaddress, probid, '%d+%d'% (i, i))
+            probid = f'TESTARITH-{testid}-{probcounter}'
+            mess = f'SOLVE|ARITH,{clientaddress},{probid},{i}+{i}'
             resp = requests.get(solveradd + '/message', params={'message': mess}, timeout=5).text
-            probid = '%s-%s-%2d' % ('TESTMFREQ', testid, probcounter)
-            mess = 'SOLVE|%s,%s,%s,%s' % ('MFREQ', clientaddress, probid, ''.join(random.choice(string.lowercase) for i in range(500)))
+            probid = f'TESTMFREQ-{testid}-{probcounter}'
+            mess = f"SOLVE|MFREQ,{clientaddress},{probid},{''.join(random.choice(string.lowercase) for i in range(500))}"
             resp = requests.get(solveradd + '/message', params={'message': mess}, timeout=5).text

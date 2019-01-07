@@ -84,7 +84,7 @@ def solver(saddress, probid, prob):
         res = ''.join([x for x, _ in Counter(prob).most_common(10)])
     except Exception:
         res = 'ERROR: NON ASCII CHARACTERS'
-    requests.get(saddress + '/message', params={'message': 'SOLVED|%s,%s' % (probid, res)})
+    requests.get(saddress + '/message', params={'message': f'SOLVED|{probid},{res}'})
 
 
 if __name__ == '__main__':
@@ -114,9 +114,9 @@ if __name__ == '__main__':
         diraddress = args.dir
 
     # Registramos el solver aritmetico en el servicio de directorio
-    solveradd = 'http://%s:%d' % (socket.gethostname(), port)
+    solveradd = f'http://{socket.gethostname()}:{port}'
     solverid = socket.gethostname().split('.')[0] + '-' + str(port)
-    mess = 'REGISTER|%s,MFREQ,%s' % (solverid, solveradd)
+    mess = f'REGISTER|{solverid},MFREQ,{solveradd}'
 
     done = False
     while not done:
@@ -130,5 +130,5 @@ if __name__ == '__main__':
         # Ponemos en marcha el servidor Flask
         app.run(host=hostname, port=port, debug=True, use_reloader=False)
 
-        mess = 'UNREGISTER|%s' % (solverid)
+        mess = f'UNREGISTER|{solverid}'
         requests.get(diraddress + '/message', params={'message': mess})

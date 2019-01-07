@@ -4,3 +4,6 @@ SPARQLWrapper
 requests
 numpy
 matplotlib
+amadeus
+foursquare
+python-google-places

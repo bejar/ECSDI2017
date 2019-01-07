@@ -47,6 +47,7 @@ def message():
     global loadbalance
 
     mess = request.args['message']
+    print(mess)
 
     if '|' not in mess:
         return 'ERROR: INVALID MESSAGE'
@@ -73,6 +74,8 @@ def message():
             # parametros del mensaje SEARCH = 'TIPO'
             elif messtype == 'SEARCH':
                 sertype = messparam
+                print(sertype)
+                print(directory)
                 found = [(id, directory[id][1]) for id in directory if directory[id][0] == sertype]
                 if len(found) != 0:
                     if schedule == 'equaljobs':

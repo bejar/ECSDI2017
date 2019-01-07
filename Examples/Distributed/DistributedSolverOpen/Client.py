@@ -42,7 +42,8 @@ def message():
     """
     global problems
 
-    if request.form.has_key('message'):
+    # if request.form.has_key('message'):
+    if 'message' in request.form:
         send_message(request.form['problem'], request.form['message'])
         return redirect(url_for('.iface'))
     else:
@@ -108,17 +109,19 @@ def send_message(probtype, problem):
     global port
     global problems
 
-    probid = '%s-%2d' % (clientid, probcounter)
+    probid = '%s-%02d' % (clientid, probcounter)
     probcounter += 1
 
-    solveradd = requests.get(diraddress + '/message', params={'message': 'SEARCH|SOLVER'}).text
+    print(probtype)
+
+    solveradd = requests.get(diraddress + '/message', params={'message': f'SEARCH|SOLVER'}).text
+    print(solveradd)
     if 'OK' in solveradd:
         # Le quitamos el OK de la respuesta
         solveradd = solveradd[4:]
 
         problems[probid] = [probtype, problem, 'PENDING']
-        clientaddress = 'http://%s:%d' % (clientid, port)
-        mess = 'SOLVE|%s,%s,%s,%s' % (probtype, clientadd, probid, sanitize(problem))
+        mess = f'SOLVE|{probtype},{clientadd},{probid},{sanitize(problem)}'
         resp = requests.get(solveradd + '/message', params={'message': mess}).text
         if 'ERROR' not in resp:
             problems[probid] = [probtype, problem, 'PENDING']
@@ -158,7 +161,7 @@ if __name__ == '__main__':
     else:
         hostname = socket.gethostname()
 
-    clientadd = 'http://%s:%d' % (socket.gethostname(), port)
+    clientadd = f'http://{socket.gethostname()}:{port}'
     clientid = socket.gethostname().split('.')[0] + '-' + str(port)
 
     if args.dir is None:
