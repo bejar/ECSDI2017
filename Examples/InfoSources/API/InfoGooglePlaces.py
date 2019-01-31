@@ -25,7 +25,7 @@ from AgentUtil.APIKeys import GOOGLEAPI_KEY
 google_places = GooglePlaces(GOOGLEAPI_KEY)
 
 query_result = google_places.nearby_search(
-    lat_lng={'lat': 41, 'lng': 2}, keyword='hotel',
+    lat_lng={'lat':41.390205, 'lng': 2.154007}, keyword='hotel',
     radius=300, types=['hotel'])
 
 # Imprimimos informacion de los resultados

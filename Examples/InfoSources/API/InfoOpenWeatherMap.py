@@ -4,9 +4,7 @@ Created on Fri Dec 27 15:58:13 2013
 
 Demo de consulta del servicio del tiempo de openweathermap.org
 
-Se pueden hacer consultas sin estar registrado.
-Para hacer consultas mas complejas es posible que
-haya que registrarse y obtener una clave de desarrollador en su web
+Para hacer consultas hay que registrarse y obtener una clave de desarrollador
 
 @author: javier
 """
