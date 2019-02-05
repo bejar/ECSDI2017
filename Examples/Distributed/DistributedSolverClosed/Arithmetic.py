@@ -93,14 +93,14 @@ if __name__ == '__main__':
     parser.add_argument('--open', help="Define si el servidor esta abierto al exterior o no", action='store_true',
                         default=True)
     parser.add_argument('--port', type=int, help="Puerto de comunicacion del agente")
-    parser.add_argument('--directory', default=None, help="Direccion del servicio de directorio")
+    parser.add_argument('--dir', default=None, help="Direccion del servicio de directorio")
 
     # parsing de los parametros de la linea de comandos
     args = parser.parse_args()
 
     # Configuration stuff
     if args.port is None:
-        port = 9020
+        port = 9030
     else:
         port = args.port
 

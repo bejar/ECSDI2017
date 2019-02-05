@@ -92,7 +92,6 @@ def message():
                     probid, sol = solution
                     if probid in problems:
                         problems[probid][3] = 'SOLVED'
-                        print()
                         requests.get(problems[probid][1] + '/message',
                                      params={'message': f'SOLVED|{probid},{sol}'})
                 return 'OK'

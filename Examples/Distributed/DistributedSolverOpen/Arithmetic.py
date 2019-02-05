@@ -41,7 +41,6 @@ def message():
     :return:
     """
     mess = request.args['message']
-    print(mess)
 
     if '|' not in mess:
         return 'ERROR: INVALID MESSAGE'
