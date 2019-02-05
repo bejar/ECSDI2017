@@ -68,7 +68,8 @@ def message():
                     # Buscamos el resolvedor del tipo adecuado y le mandamos el problema
                     if probtype in ['ARITH', 'MFREQ']:
                         if len(minions[probtype]) != 0:
-                            minionadd = minions[probtype].values()[randint(0, len(minions[probtype]) - 1)]
+                            mvals = [v for v in minions[probtype].values()]
+                            minionadd = mvals[randint(0, len(minions[probtype]) - 1)]
                             mess = 'SOLVE|%s,%s,%s' % (solveradd, probid, prob)
                             requests.get(minionadd + '/message', params={'message': mess})
                             # Registramos la actividad en el logger si existe
