@@ -109,7 +109,7 @@ def send_message(probtype, problem):
     global port
     global problems
 
-    probid = '{clientid}-{probcounter:03}'
+    probid = f'{clientid}-{probcounter:03}'
     probcounter += 1
 
 
