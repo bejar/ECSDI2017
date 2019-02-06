@@ -47,7 +47,7 @@ def message():
     global loadbalance
 
     mess = request.args['message']
-    print(mess)
+
 
     if '|' not in mess:
         return 'ERROR: INVALID MESSAGE'
