@@ -92,7 +92,7 @@ def register():
         agn_type = gm.value(subject=content, predicate=DSO.AgentType)
         rsearch = dsgraph.triples((None, DSO.AgentType, agn_type))
         if rsearch is not None:
-            agn_uri = rsearch.next()[0]
+            agn_uri = next(rsearch)[0]
             agn_add = dsgraph.value(subject=agn_uri, predicate=DSO.Address)
             gr = Graph()
             gr.bind('dso', DSO)
